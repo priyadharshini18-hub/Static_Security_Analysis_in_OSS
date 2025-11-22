@@ -1,0 +1,118 @@
+Run started:2025-10-29 01:48:12.737766
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'John Ripper'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html
+   Location: python-insecure-app/app/config.py:13:20
+12	
+13	SUPER_SECRET_NAME = "John Ripper"
+14	
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: '5u93R53Cr3tT0k3n'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html
+   Location: python-insecure-app/app/config.py:15:21
+14	
+15	SUPER_SECRET_TOKEN = "5u93R53Cr3tT0k3n"
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html
+   Location: python-insecure-app/app/main.py:31:29
+30	        # Get the public IP address from an external service
+31	        public_ip_response = requests.get(config.PUBLIC_IP_SERVICE_URL)
+32	        public_ip_response.raise_for_status()
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html
+   Location: python-insecure-app/tests/test_main.py:17:4
+16	    response = client.get("/")
+17	    assert response.status_code == 200
+18	    assert (
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html
+   Location: python-insecure-app/tests/test_main.py:18:4
+17	    assert response.status_code == 200
+18	    assert (
+19	        response.content.decode()
+20	        == "<h1>Hello, John Ripper!</h1><h2>Public IP: <code>Unknown</code></h2>"
+21	    )
+22	    # Mock the public IP service response
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html
+   Location: python-insecure-app/tests/test_main.py:26:4
+25	    response = client.get("/")
+26	    assert response.status_code == 200
+27	    assert (
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html
+   Location: python-insecure-app/tests/test_main.py:27:4
+26	    assert response.status_code == 200
+27	    assert (
+28	        response.content.decode()
+29	        == "<h1>Hello, John Ripper!</h1><h2>Public IP: <code>123.45.67.89</code></h2>"
+30	    )
+31	    # Test the root endpoint with name parameter
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html
+   Location: python-insecure-app/tests/test_main.py:33:4
+32	    response = client.get("/?name=Bob")
+33	    assert response.status_code == 200
+34	    assert (
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html
+   Location: python-insecure-app/tests/test_main.py:34:4
+33	    assert response.status_code == 200
+34	    assert (
+35	        response.content.decode()
+36	        == "<h1>Hello, Bob!</h1><h2>Public IP: <code>123.45.67.89</code></h2>"
+37	    )
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 66
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 8
+		Medium: 1
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 2
+		High: 6
+Files skipped (0):

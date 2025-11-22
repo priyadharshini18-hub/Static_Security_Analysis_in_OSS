@@ -1,0 +1,91 @@
+Run started:2025-10-26 04:05:42.944512
+
+Test results:
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html
+   Location: urequest/urllib3/test/contrib/emscripten/test_emscripten.py:678:12
+677	
+678	        r = requests.get(f"http://{http_host}:{http_port}/")
+679	        assert r.status_code == 200
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html
+   Location: urequest/urllib3/test/contrib/emscripten/test_emscripten.py:683:12
+682	        # try posting some json with requests on https
+683	        r = requests.post(f"https://{http_host}:{https_port}/echo_json", json=json_data)
+684	        assert r.json() == json_data
+
+--------------------------------------------------
+>> Issue: [B301:blacklist] Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_calls.html#b301-pickle
+   Location: urequest/urllib3/test/test_exceptions.py:53:17
+52	    def test_exceptions(self, exception: Exception) -> None:
+53	        result = pickle.loads(pickle.dumps(exception))
+54	        assert isinstance(result, type(exception))
+
+--------------------------------------------------
+>> Issue: [B108:hardcoded_tmp_directory] Probable insecure usage of temp file/directory.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-377 (https://cwe.mitre.org/data/definitions/377.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b108_hardcoded_tmp_directory.html
+   Location: urequest/urllib3/test/test_ssl.py:105:44
+104	        sock = mock.Mock()
+105	        ssl_.ssl_wrap_socket(sock, ca_certs="/tmp/fake-file")
+106	
+
+--------------------------------------------------
+>> Issue: [B108:hardcoded_tmp_directory] Probable insecure usage of temp file/directory.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-377 (https://cwe.mitre.org/data/definitions/377.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b108_hardcoded_tmp_directory.html
+   Location: urequest/urllib3/test/test_ssl.py:108:57
+107	        context.load_default_certs.assert_not_called()
+108	        context.load_verify_locations.assert_called_with("/tmp/fake-file", None, None)
+109	
+
+--------------------------------------------------
+>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False
+   Severity: High   Confidence: High
+   CWE: CWE-327 (https://cwe.mitre.org/data/definitions/327.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b324_hashlib.html
+   Location: urequest/urllib3/test/with_dummyserver/test_proxy_poolmanager.py:710:23
+709	        proxy_der = ssl.PEM_cert_to_DER_cert(proxy_pem_path.read_text())
+710	        proxy_hashed = hashlib.md5(proxy_der).digest()
+711	        fingerprint = binascii.hexlify(proxy_hashed).decode("ascii")
+
+--------------------------------------------------
+>> Issue: [B108:hardcoded_tmp_directory] Probable insecure usage of temp file/directory.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-377 (https://cwe.mitre.org/data/definitions/377.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b108_hardcoded_tmp_directory.html
+   Location: urequest/urllib3/test/with_dummyserver/test_socketlevel.py:1817:43
+1816	        with pytest.raises(SSLError):
+1817	            ssl_wrap_socket(None, ca_certs="/tmp/fake-file")  # type: ignore[call-overload]
+1818	
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 24763
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 1631
+		Medium: 6
+		High: 1
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 2
+		Medium: 7
+		High: 1629
+Files skipped (0):

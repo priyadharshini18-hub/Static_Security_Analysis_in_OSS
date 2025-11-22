@@ -1,0 +1,30 @@
+touch .gitignore
+```
+
+### Step 2: Add venv and other exclusions to .gitignore
+
+Open `.gitignore` and add:
+```
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
